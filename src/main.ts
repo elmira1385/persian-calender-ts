@@ -67,18 +67,20 @@ const getMonthInformation=(yaer:number,month:number):IGetMonthInformation=>({
 // built calender
 const renderCalender=(data:IDataOfCalender):void=>{
 const calender=document.getElementById("calender") as HTMLDivElement;
+const button=document.getElementById("button") as HTMLDivElement;
 calender.innerHTML=""
+button.innerHTML=""
+
 const monthInformation=getMonthInformation(data.year,data.month)
 
-const title=document.createElement("h2")
-title.textContent=`${monthInformation.name} ${data.year}`
-calender.appendChild(title)
+const titleEl=document.getElementById("title") as HTMLHeadElement
+titleEl.textContent=`${monthInformation.name} ${data.year}`
+titleEl.style.color="#ffffff"
 
 
 //prev button
-
 const prevButton=document.createElement("button")
-prevButton.textContent="ماه قبل"
+prevButton.textContent="<"
 prevButton.onclick=()=>{
 const newMonth=data.month===1?12:data.month-1
  const newYear=data.month===1?data.year-1:data.year
@@ -87,22 +89,17 @@ const newMonth=data.month===1?12:data.month-1
 
 //next button 
 const nextButton=document.createElement("button")
-nextButton.textContent="ماه بعد"
+nextButton.textContent=">"
 nextButton.onclick=()=>{
 const newMonth=data.month===12?1:data.month+1
 const newYear=data.month===12?data.year+1:data.year
   renderCalender({year:newYear,month:newMonth,today})
 }
-calender.appendChild(prevButton)
-calender.appendChild(nextButton)
+button.appendChild(prevButton)
+button.appendChild(nextButton)
 
 const grid=document.createElement("div")
-grid.style.display="grid"
-grid.style.gridTemplateColumns="repeat(7,60px)"
-grid.style.gap="4px"
-grid.style.direction="rtl"
-grid.style.textAlign="center"
-grid.style.border="red"
+grid.classList.add("grid")
 
 const weekDays = [
   "شنبه",
@@ -120,32 +117,31 @@ weekDays.forEach((day)=>{
 })
 
 
-//empty cell before days
+//empty cell before the first day
 for(let i=0;i<monthInformation.fristDay;i++){
     const emptyCell=document.createElement("div")
     emptyCell.style.background="#f3f4f6"
     grid.appendChild(emptyCell)
 }
 
-//otherDaysOfMonth
+//Days of the month
 for(let day=1;day<=monthInformation.days;day++){
     const cell= document.createElement("div")
     cell.textContent=day.toString()
-
     if(data.year===today.year&&data.month===today.month&&day===today.day){
         cell.style.background="#d0f0ff"
-        cell.style.borderRadius="6px"
     }
     grid.appendChild(cell)
 }
-//empty cell after days
+//empty cell after the last day
 const totalCells=monthInformation.fristDay+monthInformation.days
-const rameinedCell=42-totalCells
-for(let i=0;i<rameinedCell;i++){
+const remainingCells=35-totalCells
+for(let i=0;i<remainingCells;i++){
     const emptyCell=document.createElement("div")
     emptyCell.style.background="#f3f4f6"
     grid.appendChild(emptyCell)
 }
+
 calender.appendChild(grid)
 }
 renderCalender({year:today.year,month:today.month,today})

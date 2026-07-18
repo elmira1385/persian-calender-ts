@@ -5,31 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>تقویم شمسی</title>
 
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="src/style.css" />
   </head>
 
   <body>
-    <div id="calender">
-
-      <div class="header">
-        <button id="prev">‹</button>
+    <div class="container">
+      <div id="header">
         <h2 id="title"></h2>
-        <button id="next">›</button>
+        <div id="button">
+        </div>
       </div>
-    
-      <div class="weekdays">
-        <div>شنبه</div>
-        <div>یکشنبه</div>
-        <div>دوشنبه</div>
-        <div>سه‌شنبه</div>
-        <div>چهارشنبه</div>
-        <div>پنج‌شنبه</div>
-        <div>جمعه</div>
+      <div id="calender">
       </div>
-    
-      <div id="days" class="days-grid"></div>
-    
     </div>
+  
     <script type="module" src="src/main.ts" defer></script>
   </body>
 </html>
