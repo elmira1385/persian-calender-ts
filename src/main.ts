@@ -57,7 +57,7 @@ const dayInMonth=(month:number):number=>(
 month<=6?31:month<=11?30:29
 )
  
-const getMonthInformation=(yaer:number,month:number):IGetMonthInformation=>({
+const getMonthInformation=(month:number):IGetMonthInformation=>({
     name:monthName[month-1]!,
     fristDay:fristDayOfMonth[month-1]!,
     days:dayInMonth(month)
@@ -71,7 +71,7 @@ const button=document.getElementById("button") as HTMLDivElement;
 calender.innerHTML=""
 button.innerHTML=""
 
-const monthInformation=getMonthInformation(data.year,data.month)
+const monthInformation=getMonthInformation(data.month)
 
 const titleEl=document.getElementById("title") as HTMLHeadElement
 titleEl.textContent=`${monthInformation.name} ${data.year}`
