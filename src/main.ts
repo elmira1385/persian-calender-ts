@@ -128,8 +128,9 @@ for(let i=0;i<monthInformation.fristDay;i++){
 for(let day=1;day<=monthInformation.days;day++){
     const cell= document.createElement("div")
     cell.textContent=day.toString()
+    cell.style.background="#d0f0ff"
     if(data.year===today.year&&data.month===today.month&&day===today.day){
-        cell.style.background="#d0f0ff"
+        cell.style.background="#60A5FA"
     }
     grid.appendChild(cell)
 }
