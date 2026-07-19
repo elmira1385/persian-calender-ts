@@ -5,7 +5,7 @@ interface IToday{
 }
 interface IGetMonthInformation{
     name:string,
-    fristDay:number,
+    firstDay:number,
     days:number
 }
 
@@ -59,7 +59,7 @@ month<=6?31:month<=11?30:29
  
 const getMonthInformation=(month:number):IGetMonthInformation=>({
     name:monthName[month-1]!,
-    fristDay:fristDayOfMonth[month-1]!,
+    firstDay:fristDayOfMonth[month-1]!,
     days:dayInMonth(month)
 }
 )
@@ -118,7 +118,7 @@ weekDays.forEach((day)=>{
 
 
 //empty cell before the first day
-for(let i=0;i<monthInformation.fristDay;i++){
+for(let i=0;i<monthInformation.firstDay;i++){
     const emptyCell=document.createElement("div")
     emptyCell.style.background="#f3f4f6"
     grid.appendChild(emptyCell)
@@ -135,7 +135,7 @@ for(let day=1;day<=monthInformation.days;day++){
     grid.appendChild(cell)
 }
 //empty cell after the last day
-const totalCells=monthInformation.fristDay+monthInformation.days
+const totalCells=monthInformation.firstDay+monthInformation.days
 const remainingCells=35-totalCells
 for(let i=0;i<remainingCells;i++){
     const emptyCell=document.createElement("div")
